@@ -145,7 +145,8 @@ function dragItem() {
         this.append(draggedItem);
         this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
         saveTasks();
-        setInterval(set, 100);
+        set();
+        // setInterval(set, 100);
       });
     }
   }
