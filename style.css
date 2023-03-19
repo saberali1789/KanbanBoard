@@ -1,0 +1,81 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #029e48;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+.kanban {
+	display: flex;
+	justify-content: space-around;
+  width: 85%;
+}
+
+.column {
+	/* background-color: #f2f2f2; */
+	padding: 10px;
+	width: 30%;
+	border-radius: 5px;
+}
+
+h2 {
+	text-align: center;
+  color: #fff;
+}
+
+.add {
+  font-size: 22px;
+	margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #026913;
+  color: #fff;
+}
+
+li {
+	margin-top: 5px;
+	padding: 5px;
+	background-color: #fff;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+li button {
+	background-color: #e74c3c;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+
+li button.edit {
+	background-color: #2980b9;
+}
+
+li button.delete {
+	margin-left: 10px;
+}
+
+input[type="text"] {
+	width: 80%;
+	margin-right: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+}
+
+input[type="text"]:focus {
+	outline: none;
+}
