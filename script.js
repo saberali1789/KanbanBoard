@@ -103,7 +103,7 @@ function deleteTask(button) {
 function dragItem() {
   const list_items = document.querySelectorAll(".item");
   const lists = document.querySelectorAll(".uls");
-
+  const main = document.querySelector('.column')
   let draggedItem = null;
 
   for (let i = 0; i < list_items.length; i++) {
@@ -111,6 +111,7 @@ function dragItem() {
 
     item.addEventListener("dragstart", function () {
       draggedItem = item;
+      item.parentElement.style.padding = "30px";
       setTimeout(function () {
         item.style.display = "none";
       }, 0);
@@ -128,6 +129,7 @@ function dragItem() {
 
       list.addEventListener("dragover", function (e) {
         e.preventDefault();
+        item.parentElement.style.padding = "30px";
       });
 
       list.addEventListener("dragenter", function (e) {
@@ -140,8 +142,6 @@ function dragItem() {
       });
 
       list.addEventListener("drop", function (e) {
-        console.log("drop");
-        console.log(this.firstChild[3]);
         this.append(draggedItem);
         this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
         saveTasks();
