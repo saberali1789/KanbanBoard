@@ -73,6 +73,7 @@ function addTask(column, task = "") {
     }
     saveTasks();
    dragItem();
+   dragItemTouch();
     // addDragDropListeners(li);
   }
 }
@@ -158,7 +159,7 @@ function set(){
 ////Touch Screen
 
 
-function dragItem() {
+function dragItemTouch() {
   const list_items = document.querySelectorAll(".item");
   const lists = document.querySelectorAll(".uls");
   const main = document.querySelector(".column");
@@ -172,7 +173,7 @@ function dragItem() {
       draggedItem = item;
       item.parentElement.style.padding = "30px";
       setTimeout(function () {
-        item.style.display = "none";
+        // item.style.display = "none";
       }, 0);
       item.style.left = touch.pageX + "px";
       item.style.top = touch.pageY + "px";
