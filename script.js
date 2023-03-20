@@ -155,27 +155,61 @@ function set(){
   location.reload()
 }
 
+////Touch Screen
 
 
+function dragItem() {
+  const list_items = document.querySelectorAll(".item");
+  const lists = document.querySelectorAll(".uls");
+  const main = document.querySelector(".column");
+  let draggedItem = null;
 
+  for (let i = 0; i < list_items.length; i++) {
+    const item = list_items[i];
 
-// function addDragDropListeners(li) {
-//   li.addEventListener("dragstart", function (event) {
-//     event.dataTransfer.setData("text/plain", li.innerHTML);
-//     event.dataTransfer.effectAllowed = "move";
-//   });
+    item.addEventListener("touchstart", function (e) {
+      const touch = e.targetTouches[0];
+      draggedItem = item;
+      item.parentElement.style.padding = "30px";
+      setTimeout(function () {
+        item.style.display = "none";
+      }, 0);
+      item.style.left = touch.pageX + "px";
+      item.style.top = touch.pageY + "px";
+    });
 
-//   li.addEventListener("dragover", function (event) {
-//     event.preventDefault();
-//     event.dataTransfer.dropEffect = "move";
-//   });
+    item.addEventListener("touchmove", function (e) {
+      const touch = e.targetTouches[0];
+      e.preventDefault();
+      item.style.left = touch.pageX + "px";
+      item.style.top = touch.pageY + "px";
+    });
 
-//   li.addEventListener("drop", function (event) {
-//     event.preventDefault();
-//     let sourceLi = document.createElement("li");
-//     sourceLi.innerHTML = event.dataTransfer.getData("text/plain");
-//     li.parentNode.insertBefore(sourceLi, li);
-//     li.parentNode.removeChild(li);
-//     saveTasks();
-//   });
-// }
+    item.addEventListener("touchend", function () {
+      setTimeout(function () {
+        draggedItem = null;
+      }, 0);
+    });
+
+    for (let j = 0; j < lists.length; j++) {
+      const list = lists[j];
+
+      list.addEventListener("touchmove", function (e) {
+        const touch = e.targetTouches[0];
+        e.preventDefault();
+        item.parentElement.style.padding = "30px";
+        item.style.left = touch.pageX + "px";
+        item.style.top = touch.pageY + "px";
+      });
+
+      list.addEventListener("touchend", function (e) {
+        console.log("drop");
+        console.log(this.firstChild[3]);
+        this.append(draggedItem);
+        this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        saveTasks();
+        set();
+      });
+    }
+  }
+}
